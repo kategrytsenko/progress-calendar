@@ -1,0 +1,24 @@
+<div class="calendar-cell">
+  <div class="calendar-cell__header">
+    01 Monday
+  </div>
+  <mat-divider></mat-divider>
+<!--  TODO there will be ng-repeat through different tasks; and every task content will be component-->
+  <div class="calendar-cell__task">
+    <span>Task</span>
+    <mat-divider></mat-divider>
+    <span>Needed to spend: 1hr</span>
+    <mat-divider></mat-divider>
+    <span class="calendar-cell__time-editing">
+      Was spend:
+      <app-time-input [hours]="hours" [minutes]="minutes" [editMode]="editMode"></app-time-input>
+<!--      TODO: add ng-disabled-->
+      <button mat-raised-button color="accent" class="mat-button-small" (click)="editSpendedTime()">Edit</button>
+      <button mat-raised-button color="primary" class="mat-button-small" (click)="saveSpendedTime()">Save</button>
+    </span>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="calendar-cell__footer">
+    <button mat-raised-button color="warn" class="mat-button-small">Close the day</button>
+  </div>
+</div>

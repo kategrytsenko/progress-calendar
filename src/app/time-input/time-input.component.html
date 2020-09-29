@@ -1,0 +1,7 @@
+<div class="time-input">
+  <!--  TODO: depends on mode (whether edit or not) - input or span-->
+  <span *ngIf="!editMode">{{ hours }}</span>
+  <input *ngIf="editMode" [(ngModel)]="hours" type="number" min="0" max="23"/> hrs.
+  <span *ngIf="!editMode">{{ minutes }}</span>
+  <input *ngIf="editMode" [(ngModel)]="minutes" type="number" min="0" max="59"/> min.
+</div>

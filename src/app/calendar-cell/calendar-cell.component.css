@@ -1,0 +1,12 @@
+.calendar-cell__header {
+
+}
+
+.calendar-cell__task {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-cell__time-editing {
+  display: flex;
+}

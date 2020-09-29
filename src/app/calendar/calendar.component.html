@@ -1,0 +1,8 @@
+<div class="calendar__container">
+  <mat-grid-list cols="5">
+    <!--  TODO: let i of array of days in month-->
+    <mat-grid-tile *ngFor="let i of Arr(num).fill(1)">
+      <app-calendar-cell></app-calendar-cell>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
