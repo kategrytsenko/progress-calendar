@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'progress-calendar';
+  tasksList = []; // get from Server
 }

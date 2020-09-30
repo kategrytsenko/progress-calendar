@@ -1,3 +1,7 @@
 <div class="app__container">
-  <app-calendar></app-calendar>
+  <app-header></app-header>
+  <div class="app-content__container">
+    <app-tasks-list [tasksList]="tasksList"></app-tasks-list>
+    <app-calendar></app-calendar>
+  </div>
 </div>
