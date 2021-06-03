@@ -1,5 +1,5 @@
 <div class="tasks-section">
-  <h2>Tasks list
+  <h2 class="tasks-section__title">Tasks list
     <button mat-icon-button color="primary" (click)="addNewTask()">
       <mat-icon aria-label="Add new task">add_circle</mat-icon>
       <!--  playlist_add-->
@@ -8,14 +8,14 @@
     </button>
   </h2>
 
-  <app-task-form *ngIf="editMode" [task]="taskToEdit"></app-task-form>
+  <app-task-form *ngIf="editMode" [task]="taskToEdit" (taskChanged)="onTaskSaved($event)"></app-task-form>
 
   <div class="tasks-list" *ngIf="tasksList.length">
     <div *ngFor="let task of tasksList">
       <app-tasks-list-item [task]="task"></app-tasks-list-item>
 
       <button mat-icon-button color="primary" (click)="editTask(task)">
-        <mat-icon aria-label="Add new task">add_circle</mat-icon>
+        <mat-icon aria-label="Edit task">edit</mat-icon>
       </button>
     </div>
   </div>

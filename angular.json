@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "progress-calendar"
+  "defaultProject": "progress-calendar",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,42 @@
+<div class="task-form">
+  <form (submit)="saveTask(taskForm)" #taskForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Task Name</mat-label>
+      <input matInput
+             ngModel
+             name="name"
+             #name="ngModel"
+             required>
+      <mat-error *ngIf="name.invalid">Please enter the name</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+<!--      TODO: required or default value-->
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate
+               placeholder="Start date"
+               ngModel
+               name="startDate"
+               required>
+        <input matEndDate
+               placeholder="End date"
+               ngModel
+               name="endDate"
+               required>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
+      <mat-date-range-picker #picker required></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Iterance</mat-label>
+<!--      TODO: required or default value-->
+      <mat-select ngModel name="iterance">
+        <mat-option *ngFor="let option of iteranceOptions" [value]="option.title">{{ option.title }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" submit><mat-icon>save</mat-icon></button>
+  </form>
+</div>
