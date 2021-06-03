@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TaskModel } from './models/task.model';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import { TaskModel } from './models/task.model';
 })
 export class AppComponent {
   title = 'progress-calendar';
-  tasksList: TaskModel[] = []; // get from Server
 }
