@@ -12,7 +12,7 @@
   <app-task-form *ngIf="editMode" [task]="taskToEdit"></app-task-form>
 
   <div class="tasks-list" *ngIf="tasksList.length">
-    <div *ngFor="let task of tasksList">
+    <div *ngFor="let task of tasksList" class="tasks-list__item">
       <app-tasks-list-item [task]="task"></app-tasks-list-item>
 
       <button mat-icon-button color="accent" (click)="editTask(task)">
