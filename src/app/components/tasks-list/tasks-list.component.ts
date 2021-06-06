@@ -9,7 +9,7 @@ import { TasksService } from '../../services/tasks.service';
   styleUrls: ['./tasks-list.component.css']
 })
 export class TasksListComponent implements OnInit, OnDestroy {
-  tasksList: TaskModel[];
+  tasksList: TaskModel[] = [];
   private tasksSub: Subscription;
   editMode = false;
   taskToEdit: TaskModel;
@@ -18,7 +18,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.tasksList = this.tasksService.getTasks();
+    this.tasksService.getTasks();
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((tasks: TaskModel[]) => {
         this.tasksList = tasks;
@@ -32,6 +32,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   addNewTask() {
     this.editMode = true;
     this.taskToEdit = {
+      id: null,
       name: '',
       startDate: new Date(),
       endDate: new Date(),
