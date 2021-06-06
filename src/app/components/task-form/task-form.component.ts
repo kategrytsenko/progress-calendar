@@ -27,5 +27,6 @@ export class TaskFormComponent implements OnInit {
     }
     const { name, startDate, endDate, iterance } = form.value;
     this.tasksService.addTask(name, startDate, endDate, iterance);
+    form.resetForm();
   }
 }

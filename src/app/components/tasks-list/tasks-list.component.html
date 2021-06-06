@@ -15,8 +15,11 @@
     <div *ngFor="let task of tasksList">
       <app-tasks-list-item [task]="task"></app-tasks-list-item>
 
-      <button mat-icon-button color="primary" (click)="editTask(task)">
+      <button mat-icon-button color="accent" (click)="editTask(task)">
         <mat-icon aria-label="Edit task">edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteTask(task)">
+        <mat-icon aria-label="Delete task">delete</mat-icon>
       </button>
     </div>
   </div>
