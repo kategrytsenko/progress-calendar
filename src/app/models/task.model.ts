@@ -1,6 +1,7 @@
 export interface TaskModel {
-  name: string,
-  startDate: Date,
-  endDate: Date,
-  iterance: string
+  id: string;
+  name: string;
+  startDate: Date;
+  endDate: Date;
+  iterance: string;
 }
