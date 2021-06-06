@@ -44,4 +44,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.editMode = true;
     this.taskToEdit = task;
   }
+
+  deleteTask(task) {
+  //  TODO:
+  }
 }
