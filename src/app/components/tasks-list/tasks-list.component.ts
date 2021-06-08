@@ -40,13 +40,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
     };
   }
 
-  //TODO:
-  editTask(task) {
+  // TODO:
+  onTaskEdit(task) {
     this.editMode = true;
     this.taskToEdit = task;
   }
 
-  deleteTask(task) {
-  //  TODO:
+  onTaskDelete(taskId: string) {
+    this.tasksService.deleteTask(taskId);
   }
 }

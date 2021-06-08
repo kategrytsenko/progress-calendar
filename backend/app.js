@@ -32,32 +32,30 @@ app.use((req, res, next) => {
 app.post('/api/tasks', (req, res, next) => {
   const { name, startDate, endDate, iterance } = req.body;
   const task = new Task({ name, startDate, endDate, iterance });
-  task.save();
-  res.status(201).json({
-    message: 'Task added successfully'
+  task.save().then(createdTak => {
+    res.status(201).json({
+      message: 'Task added successfully',
+      taskId: createdTak._id
+    });
   });
 });
 
 app.get('/api/tasks', (req, res, next) => {
-  const tasks = [
-    {
-      id: 'sjdlj8789',
-      name: 'Test',
-      startDate: 'Tue Jun 01 2021 00:00:00 GMT+0300',
-      endDate: 'Thu Jun 03 2021 00:00:00 GMT+030',
-      iterance: 'On weekdays'
-    },
-    {
-      id: 'sjflj88ihk',
-      name: 'Test 2',
-      startDate: 'Tue Jun 01 2021 00:00:00 GMT+0300',
-      endDate: 'Thu Jun 03 2021 00:00:00 GMT+030',
-      iterance: 'On weekdays'
-    }
-  ];
-  res.status(200).json({
-    message: 'Tasks fetched successfully',
-    tasks
+  Task.find()
+    .then(documents => {
+      res.status(200).json({
+        message: 'Tasks fetched successfully',
+        tasks: documents
+      });
+    });
+});
+
+app.delete('/api/tasks/:id', (req, res, next) => {
+  Task.deleteOne({_id: req.params.id})
+    .then((result) => {
+      res.status(200).json({
+        message: 'Task deleted!',
+      });
   });
 });
 
