@@ -1,1 +1,8 @@
-<mat-toolbar color="primary">Progress Calendar</mat-toolbar>
+<mat-toolbar class="header" color="primary">
+  <div class="header__inner-container">
+    <div><a class="header__link" routerLink="/">Progress Calendar</a></div>
+    <div class="header__links-lisk">
+      <a class="header__link" mat-button routerLink="/settings" routerLinkActive="header__link--active">Settings</a>
+    </div>
+  </div>
+</mat-toolbar>

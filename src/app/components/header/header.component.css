@@ -1,0 +1,14 @@
+.header__inner-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__link {
+  text-decoration: none;
+  color: white;
+}
+.header__link--active {
+  color: #b0bec5;
+}
+
