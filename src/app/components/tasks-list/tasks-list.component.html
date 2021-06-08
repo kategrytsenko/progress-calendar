@@ -9,7 +9,7 @@
   </h2>
 
 <!--  TODO: edit mode-->
-  <app-task-form *ngIf="editMode" [task]="taskToEdit"></app-task-form>
+  <app-task-form *ngIf="editMode" [task]="currentTask"></app-task-form>
 
   <div class="tasks-list" *ngIf="tasksList.length">
     <div *ngFor="let task of tasksList" class="tasks-list__item">

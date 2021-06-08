@@ -12,13 +12,13 @@ import { TasksService } from '../../services/tasks.service';
 })
 export class TaskFormComponent implements OnInit {
   @Input() task: TaskModel;
-  taskToEdit: TaskModel;
+  currentTask: TaskModel;
   iteranceOptions = iteranceOptions;
 
   constructor(public tasksService: TasksService) {}
 
   ngOnInit() {
-    this.taskToEdit = _.cloneDeep(this.task);
+    this.currentTask = _.cloneDeep(this.task);
   }
 
   saveTask(form: NgForm) {

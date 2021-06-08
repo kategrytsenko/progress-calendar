@@ -12,7 +12,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   tasksList: TaskModel[] = [];
   private tasksSub: Subscription;
   editMode = false;
-  taskToEdit: TaskModel;
+  currentTask: TaskModel;
 
   constructor(public tasksService: TasksService) {
   }
@@ -31,7 +31,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   addNewTask() {
     this.editMode = true;
-    this.taskToEdit = {
+    this.currentTask = {
       id: null,
       name: '',
       startDate: new Date(),
@@ -43,7 +43,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   // TODO:
   onTaskEdit(task) {
     this.editMode = true;
-    this.taskToEdit = task;
+    this.currentTask = task;
   }
 
   onTaskDelete(taskId: string) {
