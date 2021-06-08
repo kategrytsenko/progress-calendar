@@ -1,32 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
-import * as _ from 'lodash';
+import { Component, Input, Output } from '@angular/core';
 import { TaskModel } from '../../models/task.model';
 import { iteranceOptions } from '../../constants/iterance-options';
 import { NgForm } from '@angular/forms';
-import { TasksService } from '../../services/tasks.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent {
   @Input() task: TaskModel;
-  currentTask: TaskModel;
+  @Output() saveTask: EventEmitter<any> = new EventEmitter();
   iteranceOptions = iteranceOptions;
 
-  constructor(public tasksService: TasksService) {}
-
-  ngOnInit() {
-    this.currentTask = _.cloneDeep(this.task);
-  }
-
-  saveTask(form: NgForm) {
-    if (form.invalid) {
-      return;
-    }
-    const { name, startDate, endDate, iterance } = form.value;
-    this.tasksService.addTask(name, startDate, endDate, iterance);
-    form.resetForm();
+  onTaskSave(form: NgForm) {
+    this.saveTask.emit(form);
   }
 }

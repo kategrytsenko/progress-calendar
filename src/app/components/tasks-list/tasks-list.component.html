@@ -8,8 +8,10 @@
     </button>
   </h2>
 
-<!--  TODO: edit mode-->
-  <app-task-form *ngIf="editMode" [task]="currentTask"></app-task-form>
+  <!--  TODO: edit mode-->
+  <app-task-form *ngIf="newTaskMode || editMode"
+                 [task]="currentTask"
+                 (saveTask)="onTaskSave($event)"></app-task-form>
 
   <div class="tasks-list" *ngIf="tasksList.length">
     <div *ngFor="let task of tasksList" class="tasks-list__item">

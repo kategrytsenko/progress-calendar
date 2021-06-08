@@ -43,8 +43,20 @@ export class TasksService {
       });
   }
 
+  getTask(id: string) {
+    return { ...this.tasks.find(task => task.id === id) };
+  }
+
+  editTask(id, name: string, startDate: Date, endDate: Date, iterance: string) {
+    const task: TaskModel = { id, name, startDate, endDate, iterance };
+    this.http.put<{ message: string, taskId: string }>(`http://localhost:3000/api/tasks/${ id }`, task)
+      .subscribe((response) => {
+
+      });
+  }
+
   deleteTask(taskId: string) {
-    this.http.delete<{ message: string }>(`http://localhost:3000/api/tasks/${taskId}`)
+    this.http.delete<{ message: string }>(`http://localhost:3000/api/tasks/${ taskId }`)
       .subscribe((responsData) => {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
         this.tasksUpdated.next([...this.tasks]);

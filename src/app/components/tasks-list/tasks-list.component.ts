@@ -12,6 +12,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   tasksList: TaskModel[] = [];
   private tasksSub: Subscription;
   editMode = false;
+  newTaskMode = false;
   currentTask: TaskModel;
 
   constructor(public tasksService: TasksService) {
@@ -30,7 +31,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   addNewTask() {
-    this.editMode = true;
+    this.newTaskMode = true;
     this.currentTask = {
       id: null,
       name: '',
@@ -40,7 +41,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
     };
   }
 
-  // TODO:
   onTaskEdit(task) {
     this.editMode = true;
     this.currentTask = task;
@@ -48,5 +48,21 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   onTaskDelete(taskId: string) {
     this.tasksService.deleteTask(taskId);
+  }
+
+  onTaskSave(form) {
+    if (form.invalid) {
+      return;
+    }
+    const { name, startDate, endDate, iterance } = form.value;
+    if (!this.editMode) {
+      this.tasksService.addTask(name, startDate, endDate, iterance);
+    } else {
+      this.tasksService.editTask(this.currentTask.id, name, startDate, endDate, iterance);
+    }
+    this.editMode = false;
+    this.newTaskMode = false;
+    this.currentTask = null;
+    form.resetForm();
   }
 }
