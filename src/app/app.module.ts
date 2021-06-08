@@ -22,20 +22,26 @@ import { TasksListComponent } from './components/tasks-list/tasks-list.component
 import { TasksListItemComponent } from './components/tasks-list-item/tasks-list-item.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainPageComponent,
     CalendarComponent,
     CalendarCellComponent,
     TimeInputComponent,
     TasksListComponent,
     TasksListItemComponent,
     TaskFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
