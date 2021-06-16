@@ -1,9 +1,9 @@
 <div class="task-form">
-  <form (submit)="saveTask(taskForm)" #taskForm="ngForm">
+  <form (submit)="onTaskSave(taskForm)" #taskForm="ngForm">
     <mat-form-field appearance="fill">
       <mat-label>Task Name</mat-label>
       <input matInput
-             ngModel
+             [(ngModel)]="task.name"
              name="name"
              #name="ngModel"
              required>
@@ -16,12 +16,12 @@
       <mat-date-range-input [rangePicker]="picker">
         <input matStartDate
                placeholder="Start date"
-               ngModel
+               [(ngModel)]="task.startDate"
                name="startDate"
                required>
         <input matEndDate
                placeholder="End date"
-               ngModel
+               [(ngModel)]="task.endDate"
                name="endDate"
                required>
       </mat-date-range-input>
@@ -32,7 +32,8 @@
     <mat-form-field appearance="fill">
       <mat-label>Iterance</mat-label>
 <!--      TODO: required or default value-->
-      <mat-select ngModel name="iterance">
+      <mat-select [(ngModel)]="task.iterance"
+                  name="iterance">
         <mat-option *ngFor="let option of iteranceOptions" [value]="option.title">{{ option.title }}</mat-option>
       </mat-select>
     </mat-form-field>
