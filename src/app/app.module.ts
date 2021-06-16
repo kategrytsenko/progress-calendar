@@ -11,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ReactiveFormsModule} from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -54,6 +55,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     MatSelectModule,
     MatNativeDateModule,
     MatToolbarModule,
+    MatSidenavModule,
     HttpClientModule
   ],
   providers: [],

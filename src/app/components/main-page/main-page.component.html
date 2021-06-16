@@ -1,4 +1,25 @@
 <div class="main-page">
-  <app-tasks-list></app-tasks-list>
-  <app-calendar></app-calendar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="'over'" class="main-sidebar">
+      <p class="main-sidebar__toggle-btn-container">
+        <button mat-button (click)="sidenav.toggle()">
+          Close tasks
+          <mat-icon>list</mat-icon>
+        </button>
+      </p>
+
+      <app-tasks-list></app-tasks-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <p>
+        <button mat-button (click)="sidenav.toggle()">
+          <mat-icon>list</mat-icon>
+          Open tasks
+        </button>
+      </p>
+
+      <app-calendar></app-calendar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -1,0 +1,8 @@
+.main-sidebar {
+  padding: 0 20px;
+}
+
+.main-sidebar__toggle-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
