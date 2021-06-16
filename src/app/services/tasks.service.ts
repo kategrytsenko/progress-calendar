@@ -43,9 +43,9 @@ export class TasksService {
       });
   }
 
-  getTask(id: string) {
+/*  getTask(id: string) {
     return { ...this.tasks.find(task => task.id === id) };
-  }
+  }*/
 
   editTask(id, name: string, startDate: Date, endDate: Date, iterance: string) {
     const task: TaskModel = { id, name, startDate, endDate, iterance };

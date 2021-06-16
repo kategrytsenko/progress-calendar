@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Task = require('./models/task');
+const tasksRoutes = require('./routes/tasks');
 
 const app = express();
 
@@ -29,42 +29,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/tasks', (req, res, next) => {
-  const { name, startDate, endDate, iterance } = req.body;
-  const task = new Task({ name, startDate, endDate, iterance });
-  task.save().then(createdTask => {
-    res.status(201).json({
-      message: 'Task added successfully',
-      taskId: createdTask._id
-    });
-  });
-});
-
-app.get('/api/tasks', (req, res, next) => {
-  Task.find()
-    .then(documents => {
-      res.status(200).json({
-        message: 'Tasks fetched successfully',
-        tasks: documents
-      });
-    });
-});
-
-app.put('/api/tasks/:id', (req, res, next) => {
-  const { id, name, startDate, endDate, iterance } = req.body;
-  const task = new Task({ _id: id, name, startDate, endDate, iterance });
-
-  Task.updateOne({ _id: req.params.id }, task)
-    .then(result => {
-      res.status(200).json({ message: 'Task edited successfully' });
-    });
-});
-
-app.delete('/api/tasks/:id', (req, res, next) => {
-  Task.deleteOne({ _id: req.params.id })
-    .then((result) => {
-      res.status(200).json({ message: 'Task deleted successfully' });
-    });
-});
+app.use('/api/tasks', tasksRoutes);
 
 module.exports = app;
