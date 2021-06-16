@@ -13,10 +13,6 @@ body {
   color: #fff;
 }
 
-.app-content__container {
-  padding: 0 20px;
-}
-
 .mat-button-base.mat-button-small {
   min-width: auto;
   line-height: 2.4rem;
