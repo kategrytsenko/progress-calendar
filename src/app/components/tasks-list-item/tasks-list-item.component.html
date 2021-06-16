@@ -1,7 +1,6 @@
 <div class="task-list__item">
   {{ task.name }}
-  {{ task.startDate }}
-  {{ task.endDate }}
+  {{ task.startDate | date:'mediumDate' }} - {{ task.endDate | date:'mediumDate' }}
   {{ task.iterance }}
 <!--  TODO: how many hours till the end-->
 </div>

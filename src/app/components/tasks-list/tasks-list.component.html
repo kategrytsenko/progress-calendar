@@ -8,7 +8,6 @@
     </button>
   </h2>
 
-  <!--  TODO: edit mode-->
   <app-task-form *ngIf="newTaskMode || editMode"
                  [task]="currentTask"
                  (saveTask)="onTaskSave($event)"></app-task-form>
@@ -16,7 +15,6 @@
   <div class="tasks-list" *ngIf="tasksList.length">
     <div *ngFor="let task of tasksList" class="tasks-list__item">
       <app-tasks-list-item [task]="task"></app-tasks-list-item>
-
       <button mat-icon-button color="accent" (click)="onTaskEdit(task)">
         <mat-icon aria-label="Edit task">edit</mat-icon>
       </button>
@@ -25,5 +23,4 @@
       </button>
     </div>
   </div>
-
 </div>
