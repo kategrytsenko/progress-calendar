@@ -10,8 +10,8 @@ mongoose.connect('mongodb+srv://aktinijal:L68tD8UYqYQMg53@cluster0.vcg4r.mongodb
   .then(() => {
     console.log('Connected to database!');
   })
-  .catch(() => {
-    console.log('Connection failed!');
+  .catch((err) => {
+    console.log(`Connection failed!: ${ err }`);
   });
 
 app.use(bodyParser.json());
@@ -53,30 +53,17 @@ app.get('/api/tasks', (req, res, next) => {
 app.put('/api/tasks/:id', (req, res, next) => {
   const { id, name, startDate, endDate, iterance } = req.body;
   const task = new Task({ _id: id, name, startDate, endDate, iterance });
-  // task.updateOne({ _id: req.params.id }).then(createdTask => {
-  //   console.log(createdTask);
-  //   res.status(201).json({
-  //     message: 'Task edited successfully',
-  //     taskId: createdTask._id
-  //   });
-  // });
 
   Task.updateOne({ _id: req.params.id }, task)
-    .then(createdTask => {
-      console.log(createdTask);
-      res.status(201).json({
-        message: 'Task edited successfully',
-        taskId: createdTask._id
-      });
+    .then(result => {
+      res.status(200).json({ message: 'Task edited successfully' });
     });
 });
 
 app.delete('/api/tasks/:id', (req, res, next) => {
   Task.deleteOne({ _id: req.params.id })
     .then((result) => {
-      res.status(200).json({
-        message: 'Task deleted successfully',
-      });
+      res.status(200).json({ message: 'Task deleted successfully' });
     });
 });
 

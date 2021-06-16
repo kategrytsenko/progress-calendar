@@ -51,7 +51,11 @@ export class TasksService {
     const task: TaskModel = { id, name, startDate, endDate, iterance };
     this.http.put<{ message: string, taskId: string }>(`http://localhost:3000/api/tasks/${ id }`, task)
       .subscribe((response) => {
-
+        const updatedTasks = [...this.tasks];
+        const oldTaskIndex = updatedTasks.findIndex(updatedTask => updatedTask.id === id);
+        updatedTasks[oldTaskIndex] = task;
+        this.tasks = updatedTasks;
+        this.tasksUpdated.next([...this.tasks]);
       });
   }
 
