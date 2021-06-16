@@ -1,5 +1,5 @@
 <div class="task-form">
-  <form (submit)="onTaskSave(taskForm)" #taskForm="ngForm">
+  <form (submit)="onTaskSave(taskForm)" #taskForm="ngForm" class="task-form__inner">
     <mat-form-field appearance="fill">
       <mat-label>Task Name</mat-label>
       <input matInput
@@ -12,7 +12,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
-<!--      TODO: required or default value-->
+      <!--      TODO: required or default value-->
       <mat-date-range-input [rangePicker]="picker">
         <input matStartDate
                placeholder="Start date"
@@ -30,14 +30,41 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput
+             [(ngModel)]="task.description"
+             name="description">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <!--      TODO: probably we need tooltip for this -->
+      <mat-label>The number of hours needed to complete this task</mat-label>
+      <input matInput
+             [(ngModel)]="task.taskHoursEstimation"
+             name="taskHoursEstimation"
+             type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <!--      TODO: probably we need tooltip for this -->
+      <mat-label>The number of hours you can spend on this task during the day</mat-label>
+      <input matInput
+             [(ngModel)]="task.hoursPerDayAvailability"
+             name="hoursPerDayAvailability"
+             type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Iterance</mat-label>
-<!--      TODO: required or default value-->
+      <!--      TODO: required or default value-->
       <mat-select [(ngModel)]="task.iterance"
                   name="iterance">
         <mat-option *ngFor="let option of iteranceOptions" [value]="option.title">{{ option.title }}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" submit><mat-icon>save</mat-icon></button>
+    <button mat-raised-button color="primary" submit>
+      <mat-icon>save</mat-icon>
+    </button>
   </form>
 </div>

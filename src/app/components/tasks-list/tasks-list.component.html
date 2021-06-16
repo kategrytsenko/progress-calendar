@@ -2,9 +2,6 @@
   <h2 class="tasks-section__title">Tasks list
     <button mat-icon-button color="primary" (click)="addNewTask()">
       <mat-icon aria-label="Add new task">add_circle</mat-icon>
-      <!--  playlist_add-->
-      <!--  add_circle-->
-      <!--  library_add-->
     </button>
   </h2>
 
@@ -12,15 +9,87 @@
                  [task]="currentTask"
                  (saveTask)="onTaskSave($event)"></app-task-form>
 
-  <div class="tasks-list" *ngIf="tasksList.length">
-    <div *ngFor="let task of tasksList" class="tasks-list__item">
-      <app-tasks-list-item [task]="task"></app-tasks-list-item>
-      <button mat-icon-button color="accent" (click)="onTaskEdit(task)">
-        <mat-icon aria-label="Edit task">edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="onTaskDelete(task.id)">
-        <mat-icon aria-label="Delete task">delete</mat-icon>
-      </button>
-    </div>
-  </div>
+<!--  <div class="tasks-list" *ngIf="tasksList.length">-->
+<!--    <div *ngFor="let task of tasksList" class="tasks-list__item">-->
+<!--      <app-tasks-list-item [task]="task"></app-tasks-list-item>-->
+<!--      <button mat-icon-button color="accent" (click)="onTaskEdit(task)">-->
+<!--        <mat-icon aria-label="Edit task">edit</mat-icon>-->
+<!--      </button>-->
+<!--      <button mat-icon-button color="warn" (click)="onTaskDelete(task.id)">-->
+<!--        <mat-icon aria-label="Delete task">delete</mat-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+  <table mat-table [dataSource]="tasksList" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateRange">
+      <th mat-header-cell *matHeaderCellDef> Date range </th>
+      <td mat-cell *matCellDef="let element"> {{ element.startDate | date:'mediumDate' }} - {{ element.endDate | date:'mediumDate' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="iterance">
+      <th mat-header-cell *matHeaderCellDef> Iterance </th>
+      <td mat-cell *matCellDef="let element"> {{element.iterance}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="taskHoursEstimation">
+      <th mat-header-cell *matHeaderCellDef> Estimation </th>
+      <td mat-cell *matCellDef="let element"> {{element.taskHoursEstimation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hoursPerDayAvailability">
+      <th mat-header-cell *matHeaderCellDef> Hours per day </th>
+      <td mat-cell *matCellDef="let element"> {{element.hoursPerDayAvailability}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description  </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" (click)="onTaskEdit(element)">
+          <mat-icon aria-label="Edit task">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onTaskDelete(element.id)">
+          <mat-icon aria-label="Delete task">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+
+
+  <!--  <mat-accordion class="tasks-list" *ngIf="tasksList.length">-->
+<!--    <mat-expansion-panel *ngFor="let task of tasksList">-->
+<!--      <mat-expansion-panel-header>-->
+<!--        <mat-panel-title>-->
+<!--          <app-tasks-list-item [task]="task"></app-tasks-list-item>-->
+<!--          {{ !task.description }}-->
+<!--        </mat-panel-title>-->
+<!--        <mat-panel-description>-->
+<!--          <button mat-icon-button color="accent" (click)="onTaskEdit(task)">-->
+<!--            <mat-icon aria-label="Edit task">edit</mat-icon>-->
+<!--          </button>-->
+<!--          <button mat-icon-button color="warn" (click)="onTaskDelete(task.id)">-->
+<!--            <mat-icon aria-label="Delete task">delete</mat-icon>-->
+<!--          </button>-->
+<!--        </mat-panel-description>-->
+<!--      </mat-expansion-panel-header>-->
+<!--      <p>{{ task.description }}</p>-->
+<!--    </mat-expansion-panel>-->
+<!--  </mat-accordion>-->
 </div>

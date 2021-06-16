@@ -14,6 +14,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   editMode = false;
   newTaskMode = false;
   currentTask: TaskModel;
+  displayedColumns: string[] = ['name', 'dateRange', 'iterance', 'taskHoursEstimation', 'hoursPerDayAvailability', 'description', 'buttons'];
 
   constructor(public tasksService: TasksService) {
   }
@@ -54,11 +55,29 @@ export class TasksListComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    const { name, startDate, endDate, iterance } = form.value;
+    const { name, startDate, endDate, iterance, description, taskHoursEstimation, hoursPerDayAvailability } = form.value;
     if (!this.editMode) {
-      this.tasksService.addTask(name, startDate, endDate, iterance);
+      this.tasksService.addTask({
+        id: null,
+        name,
+        startDate,
+        endDate,
+        iterance,
+        description,
+        taskHoursEstimation,
+        hoursPerDayAvailability
+      });
     } else {
-      this.tasksService.editTask(this.currentTask.id, name, startDate, endDate, iterance);
+      this.tasksService.editTask({
+        id: this.currentTask.id,
+        name,
+        startDate,
+        endDate,
+        iterance,
+        description,
+        taskHoursEstimation,
+        hoursPerDayAvailability
+      });
     }
     this.editMode = false;
     this.newTaskMode = false;

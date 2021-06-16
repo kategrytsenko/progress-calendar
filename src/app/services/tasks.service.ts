@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { assign, omit } from 'lodash';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
@@ -17,9 +18,7 @@ export class TasksService {
       .get<{ message: string, tasks: any }>('http://localhost:3000/api/tasks')
       .pipe(map((taskData) => {
         return taskData.tasks.map(task => {
-          const { name, startDate, endDate, iterance, _id } = task;
-
-          return { name, startDate, endDate, iterance, id: _id };
+          return assign({}, omit(task, '_id'), {id: task._id});
         });
       }))
       .subscribe(transformedTasks => {
@@ -32,8 +31,7 @@ export class TasksService {
     return this.tasksUpdated.asObservable();
   }
 
-  addTask(name: string, startDate: Date, endDate: Date, iterance: string) {
-    const task: TaskModel = { id: null, name, startDate, endDate, iterance };
+  addTask(task: TaskModel) {
     this.http.post<{ message: string, taskId: string }>('http://localhost:3000/api/tasks', task)
       .subscribe((responsData) => {
         const id = responsData.taskId;
@@ -47,12 +45,11 @@ export class TasksService {
     return { ...this.tasks.find(task => task.id === id) };
   }*/
 
-  editTask(id, name: string, startDate: Date, endDate: Date, iterance: string) {
-    const task: TaskModel = { id, name, startDate, endDate, iterance };
-    this.http.put<{ message: string, taskId: string }>(`http://localhost:3000/api/tasks/${ id }`, task)
+  editTask(task: TaskModel) {
+    this.http.put<{ message: string, taskId: string }>(`http://localhost:3000/api/tasks/${ task.id }`, task)
       .subscribe((response) => {
         const updatedTasks = [...this.tasks];
-        const oldTaskIndex = updatedTasks.findIndex(updatedTask => updatedTask.id === id);
+        const oldTaskIndex = updatedTasks.findIndex(updatedTask => updatedTask.id === task.id);
         updatedTasks[oldTaskIndex] = task;
         this.tasks = updatedTasks;
         this.tasksUpdated.next([...this.tasks]);

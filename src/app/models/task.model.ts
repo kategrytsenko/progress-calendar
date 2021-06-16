@@ -4,4 +4,7 @@ export interface TaskModel {
   startDate: Date;
   endDate: Date;
   iterance: string;
+  description?: string;
+  taskHoursEstimation?: number;
+  hoursPerDayAvailability?: number;
 }
