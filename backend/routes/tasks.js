@@ -52,7 +52,7 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-router.delete(':id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   Task.deleteOne({ _id: req.params.id })
     .then((result) => {
       res.status(200).json({ message: 'Task deleted successfully' });
