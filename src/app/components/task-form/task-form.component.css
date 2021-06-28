@@ -1,3 +1,7 @@
 .task-form {
+}
+
+.task-form__inner {
   display: flex;
+  flex-direction: column;
 }
